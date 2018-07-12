@@ -12,3 +12,6 @@ class Tickets(models.Model):
     issueDescription = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     #sender
+
+    def __str__(self):
+        return self.title
