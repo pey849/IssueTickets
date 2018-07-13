@@ -120,3 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+#JOIN TO PARTS OF A PATH TOGETHER
+#BASE_Dir is just teh base directory
+#then look at the assets folder
+    os.path.join(BASE_DIR, 'assests'),
+)

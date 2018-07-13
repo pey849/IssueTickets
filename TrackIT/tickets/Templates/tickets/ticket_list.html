@@ -1,8 +1,14 @@
+<!-- impiorts the base link to the folder which has all our static files (assests folder) -->
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Tickets</title>
+    <!-- allows to only input the file since we all ready have the base link -->
+    <!-- this is part of django --> 
+    <link rel="stylesheet" href="{% static 'style.css' %}">
   </head>
   <body>
     <h1>Ticket List</h1>

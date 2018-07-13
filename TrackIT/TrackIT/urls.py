@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 #import the view.py file from the same directory
 from . import views
+#allows us to append to url patterns so django can handle the serving up static patterns
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     #lsit of url pages we are going to create
@@ -32,3 +34,8 @@ urlpatterns = [
     #include the urls from tickets
     path('tickets', include('tickets.urls')),
 ]
+
+# staticfiles_urlpatterns() functions checks if we are in debug mode
+# if we are then it will append to urlpatterns so it will know how to
+# serve up our static files
+urlpatterns += staticfiles_urlpatterns()
