@@ -20,3 +20,7 @@ class Tickets(models.Model):
 
     def __str__(self):
         return self.title
+
+    def ticketDescriptionSnippet(self):
+        #take up to the 50th character
+        return self.issueDescription[:50] + "..."

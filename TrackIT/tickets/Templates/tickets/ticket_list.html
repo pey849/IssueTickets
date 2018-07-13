@@ -6,5 +6,20 @@
   </head>
   <body>
     <h1>Ticket List</h1>
+    <div class="tickets">
+
+      <!--template to write python code, but does not output code-->
+      {% for issueTicket in tickets %}
+        <div class="articles">
+            <h2><a href=#>
+              <!-- template to retrieve the vairables to output-->
+              <p>{{ issueTicket.title }}</p>
+            </a></h2>
+            <!--call the model method ticketDescriptionSnippet that takes the first 50 characters-->
+            <p>{{ issueTicket.ticketDescriptionSnippet }}</p>
+            <p>{{ issueTicket.date }}</p>
+        </div>
+      {% endfor %}
+    </div>
   </body>
 </html>
