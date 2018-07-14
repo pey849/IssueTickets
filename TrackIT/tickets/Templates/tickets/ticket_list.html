@@ -1,16 +1,10 @@
-<!-- impiorts the base link to the folder which has all our static files (assests folder) -->
-{% load static from staticfiles %}
+<!-- telling django we want to extend a template, so include all the prewirrten code -->
+<!-- similar to a header file in php.  we only need include the page's unique content -->
+<!-- insert it using block template tag and call it 'uniqueContent' since that is what django
+is looking for since we called the block 'uniqueContent' in our base_layout.html page -->
+{% extends 'base_layout.html' %}
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Tickets</title>
-    <!-- allows to only input the file since we all ready have the base link -->
-    <!-- this is part of django --> 
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-  </head>
-  <body>
+{% block uniqueContent %}
     <h1>Ticket List</h1>
     <div class="tickets">
 
@@ -26,6 +20,5 @@
             <p>{{ issueTicket.date }}</p>
         </div>
       {% endfor %}
-    </div>
-  </body>
-</html>
+      
+{% endblock %}
