@@ -1,0 +1,17 @@
+{% extends 'base_layout.html' %}
+
+{% block uniqueContent %}
+
+<div class="ticket-detail">
+  <div class="ticket">
+    <!-- now we have access to the single ticket that was found in views.py in the tickets folder -->
+    <!-- since we passed it through the render function -->
+    <!-- we called this object single_ticket_details -->
+    <h2>{{single_ticket_details.title}}</h2>
+    <p>{{single_ticket_details.issueDescription}}</p>
+    <p>{{single_ticket_details.date}}</p>
+  </div>
+
+</div>
+
+{% endblock %}

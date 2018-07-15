@@ -9,13 +9,14 @@ is looking for since we called the block 'uniqueContent' in our base_layout.html
     <div class="tickets">
 
       <!--template to write python code, but does not output code-->
-      {% for issueTicket in tickets %}
+      {% for issueTicket in myTickets %}
         <div class="articles">
             <!-- pick the href to be linked to the named capturing group from urls.py that -->
             <!-- has the line 'app_name = ticket_app' and look for the link named 'details'-->
             <!-- in case we have another URL called details in abother urls.py -->
             <!-- now we want to pass through the slug from our loop to the appropriate urls.py file to give it to its function to process-->
-            <h2><a href="{% url 'ticket_app:details' slugToPassToFuntion=issueTicket.slug %}">
+            <!-- the 'slug' from 'slug=issueTicket.slug' has to be the same as the name of the capturing group in our tickets' urls.py for example -->
+            <h2><a href="{% url 'ticket_app:details' slug=issueTicket.slug %}">
               <!-- template to retrieve the vairables to output-->
               <p>{{ issueTicket.title }}</p>
             </a></h2>
