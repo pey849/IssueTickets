@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 #import django's already defined form
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+#import django's built in login function
+from django.contrib.auth import login
 
 # Create your views here.
 def signup_view(request):
@@ -13,8 +15,10 @@ def signup_view(request):
         #check if form is valid
         if myForm.is_valid():
             #if valid, save the form's data to the database
-            myForm.save()
+            #this function also returns the user to us
+            user = myForm.save()
             #log the user in after sign up
+            login(request, user)
             #redirect the user to the list of ticket or whatever page you want
             #redirect to the urls.py file that the app_name is ticket_app
             #and the url link that is named 'list'
@@ -35,6 +39,11 @@ def login_view(request):
         myAuthForm = AuthenticationForm(data=request.POST)
         if myAuthForm.is_valid():
             # login the User
+            #we can get the user from the Authentication Form; this is built into django
+            user = myAuthForm.get_user()
+            #the login function we imported from django
+            #takes the requst object and the user that is logging in
+            login(request,user)
             return redirect('ticket_app:list')
     #else its a post method
     else:
