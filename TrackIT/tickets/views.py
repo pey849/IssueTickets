@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Tickets
 from django.http import HttpResponse
 #import the function to have login required to access a page when calling a function
 from django.contrib.auth.decorators import login_required
+#import the myForms.py file
+from . import myForms
 
 # Create your views here.
 
@@ -26,4 +28,16 @@ def ticket_details_views(request, slug):
 #instead redirect to the login page or the path you want to redirect to
 @login_required(login_url="/accounts/login/")
 def ticket_create_ticket_views(request):
-    return render(request,'tickets/create_ticket.html')
+    if request.method == 'POST':
+        #retrieve the form's data. it validating the data we request from the post request
+        #against the model form (CreateTicketForm) and we need the request.FILES the POST
+        #does not include file uploads
+        myTicketCreationForm = myForms.CreateTicketForm(request.POST, request.FILES)
+        #check if form is valid
+        if myTicketCreationForm.is_valid():
+            #save article to database
+            return redirect('ticket_app:list')
+    else:
+        #create a new instace of our model form and send it to the browser
+        myTicketCreationForm = myForms.CreateTicketForm
+    return render(request,'tickets/create_ticket.html', {'ticketForm':myTicketCreationForm})
