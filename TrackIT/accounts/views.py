@@ -44,7 +44,12 @@ def login_view(request):
             #the login function we imported from django
             #takes the requst object and the user that is logging in
             login(request,user)
-            return redirect('ticket_app:list')
+
+            #if we have the 'next' property sent to us in the login form then redirect to that link path
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('ticket_app:list')
     #else its a post method
     else:
         myAuthForm = AuthenticationForm()
