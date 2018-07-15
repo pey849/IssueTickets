@@ -2,4 +2,9 @@
 
 {% block uniqueContent %}
   <h1>Sign Up</h1>
+  <form class="site-form" action="index.html" method="post">
+    <!-- output all of django's prebuilt form outlay -->
+    {{accountForm}}
+    <input type="submit" name="" value="Sign Up">
+  </form>
 {% endblock %}
