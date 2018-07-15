@@ -32,7 +32,7 @@ urlpatterns = [
     path('', views.homepage),
 
     #include the urls from tickets
-    path('tickets', include('tickets.urls')),
+    path('tickets/', include('tickets.urls')),
 ]
 
 # staticfiles_urlpatterns() functions checks if we are in debug mode
