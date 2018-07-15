@@ -13,6 +13,10 @@ urlpatterns = [
     #the home page of tickets
     path('', views.ticket_list, name="list"),
 
+    #urls should be above the one below so the regex doesn't get confused
+    #that the path we are going to is part of a slug
+    path('create/', views.ticket_create_ticket_views, name="create"),
+
     #define a named capturing group for the first parameter
     #reference: https://stackoverflow.com/questions/7988942/what-does-this-django-regex-mean-p
     #re_path is just path but can also handle regular expressions syntax
