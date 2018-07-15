@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #register the tickets app folder
     'tickets',
+    #register the accouts app folder
+    'accounts',
 ]
 
 MIDDLEWARE = [

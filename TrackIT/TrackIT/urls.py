@@ -36,6 +36,9 @@ urlpatterns = [
 
     #include the urls from tickets
     path('tickets/', include('tickets.urls')),
+
+    #include the urls from accounts
+    path('accounts/', include('accounts.urls')),
 ]
 
 # staticfiles_urlpatterns() functions checks if we are in debug mode
