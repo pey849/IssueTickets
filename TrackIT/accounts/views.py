@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 #import django's already defined form
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Create your views here.
 def signup_view(request):
@@ -27,3 +27,17 @@ def signup_view(request):
 
     #send to the signup.html page the variable 'accountForm'
     return render(request,'accounts/signup.html', {'accountForm':myForm})
+
+def login_view(request):
+    if request.method == 'POST':
+        #we need to name the data as this is the actual first expected
+        #parameter it expects
+        myAuthForm = AuthenticationForm(data=request.POST)
+        if myAuthForm.is_valid():
+            # login the User
+            return redirect('ticket_app:list')
+    #else its a post method
+    else:
+        myAuthForm = AuthenticationForm()
+
+    return render(request, 'accounts/login.html', {'loginForm':myAuthForm})
