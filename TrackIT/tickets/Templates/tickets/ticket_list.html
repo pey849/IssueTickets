@@ -11,7 +11,11 @@ is looking for since we called the block 'uniqueContent' in our base_layout.html
       <!--template to write python code, but does not output code-->
       {% for issueTicket in tickets %}
         <div class="articles">
-            <h2><a href=#>
+            <!-- pick the href to be linked to the named capturing group from urls.py that -->
+            <!-- has the line 'app_name = ticket_app' and look for the link named 'details'-->
+            <!-- in case we have another URL called details in abother urls.py -->
+            <!-- now we want to pass through the slug from our loop to the appropriate urls.py file to give it to its function to process-->
+            <h2><a href="{% url 'ticket_app:details' slugToPassToFuntion=issueTicket.slug %}">
               <!-- template to retrieve the vairables to output-->
               <p>{{ issueTicket.title }}</p>
             </a></h2>
@@ -20,5 +24,5 @@ is looking for since we called the block 'uniqueContent' in our base_layout.html
             <p>{{ issueTicket.date }}</p>
         </div>
       {% endfor %}
-      
+
 {% endblock %}
