@@ -16,6 +16,7 @@ class Tickets(models.Model):
     issueDescription = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=50, default="")
+    attachment = models.ImageField(default='default.png', blank=True)
     #sender
 
     def __str__(self):

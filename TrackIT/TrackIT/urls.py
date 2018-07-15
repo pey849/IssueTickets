@@ -19,6 +19,9 @@ from django.urls import path, include
 from . import views
 #allows us to append to url patterns so django can handle the serving up static patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+#import the settings.py file
+from django.conf import settings
 
 urlpatterns = [
     #lsit of url pages we are going to create
@@ -39,3 +42,5 @@ urlpatterns = [
 # if we are then it will append to urlpatterns so it will know how to
 # serve up our static files
 urlpatterns += staticfiles_urlpatterns()
+#we have access to the variables in the settings.py file from the import above
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

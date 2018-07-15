@@ -127,3 +127,10 @@ STATICFILES_DIRS = (
 #then look at the assets folder
     os.path.join(BASE_DIR, 'assests'),
 )
+
+#lines needed to help with uploading media
+
+#subpath folder to get to media
+MEDIA_URL = '/mediafiles/'
+#once media is uploaded, it will update to myMediaFolder
+MEDIA_ROOT = os.path.join(BASE_DIR, 'myMediaFolder')
