@@ -17,6 +17,18 @@
   <body>
 
     <div class="wrapper">
+      <!-- create logout button in the navigation -->
+      <nav>
+        <ul>
+          <li>
+            <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+              <!-- add the csrf token for security -->
+              {% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+          </li>
+        </ul>
+      </nav>
       <!--the unique stuff from each page goes in here-->
       <!-- create a 'block' and look for a block with the name 'uniqueContent' -->
       <!-- so if we see an html page (Template) with a block called 'uniqueContent' it take it and insert it into a copy of our base layout -->

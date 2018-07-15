@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 #import django's already defined form
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 #import django's built in login function
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 # Create your views here.
 def signup_view(request):
@@ -50,3 +50,12 @@ def login_view(request):
         myAuthForm = AuthenticationForm()
 
     return render(request, 'accounts/login.html', {'loginForm':myAuthForm})
+
+
+def logout_view(request):
+    if request.method == 'POST':
+        #we just need to pass the request object out as django
+        #will just logout the current user. it doens't need to know
+        # who is logged in
+        logout(request)
+        return redirect('ticket_app:list')
