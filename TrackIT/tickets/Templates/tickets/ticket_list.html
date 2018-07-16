@@ -10,7 +10,7 @@ is looking for since we called the block 'uniqueContent' in our base_layout.html
 
       <!--template to write python code, but does not output code-->
       {% for issueTicket in myTickets %}
-        <div class="articles">
+        <div class="ticket">
             <!-- pick the href to be linked to the named capturing group from urls.py that -->
             <!-- has the line 'app_name = ticket_app' and look for the link named 'details'-->
             <!-- in case we have another URL called details in abother urls.py -->
@@ -23,6 +23,9 @@ is looking for since we called the block 'uniqueContent' in our base_layout.html
             <!--call the model method ticketDescriptionSnippet that takes the first 50 characters-->
             <p>{{ issueTicket.ticketDescriptionSnippet }}</p>
             <p>{{ issueTicket.date }}</p>
+            <!-- we need to reference the reporter but since it is a foreign key -->
+            <!-- we need to access the actual field's name from User which is username -->
+            <p class="reporter">Submited by: {{ issueTicket.reporter.username }}</p>
         </div>
       {% endfor %}
 
