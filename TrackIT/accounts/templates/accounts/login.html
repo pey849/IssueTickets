@@ -2,9 +2,9 @@
 
 {% block uniqueContent %}
   <h1>Log in</h1>
-  <!-- "{% url 'accounts:login' %}" is the same as "/accounts/signup/" -->
+  <!-- "\{% url 'accounts:login' %\}" is the same as "/accounts/signup/" -->
   <!-- we are just asking for the app_name called accounts and the url that named login -->
-  <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+  <form class="site-form" action="{% url 'accounts_app:login' %}" method="post">
     <!-- we also need to send a token to tell the server that data we are sending
     is coming from our application and please accept our data. the data isn't coming
     from anywhere else -->

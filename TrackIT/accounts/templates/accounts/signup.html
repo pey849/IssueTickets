@@ -2,7 +2,7 @@
 
 {% block uniqueContent %}
   <h1>Sign Up</h1>
-  <form class="site-form" action="/accounts/signup/" method="post">
+  <form class="site-form" action="{% url 'accounts_app:signup' %}" method="post">
     <!-- we also need to send a token to tell the server that data we are sending
     is coming from our application and please accept our data. the data isn't coming
     from anywhere else -->
