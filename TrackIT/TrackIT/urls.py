@@ -23,6 +23,11 @@ from django.conf.urls.static import static
 #import the settings.py file
 from django.conf import settings
 
+#since we already importing views from the current directory above
+#we need to give it an alias to tell which view we are referencing
+#when we have more than one imported views
+from tickets import views as ticket_views
+
 urlpatterns = [
     #lsit of url pages we are going to create
     # r = regular express
@@ -31,8 +36,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #about page
     path('about/', views.about),
-    #the home page
-    path('', views.homepage),
+    #the home page which is now being redirected to the ticket list page
+    #in the urls.py in tickets folder and give it an alias of 'home'
+    #when we just go to the base URL like no slug attached to it
+    path('', ticket_views.ticket_list, name="home"),
 
     #include the urls from tickets
     path('tickets/', include('tickets.urls')),
