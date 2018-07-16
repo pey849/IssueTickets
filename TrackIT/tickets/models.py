@@ -1,4 +1,6 @@
 from django.db import models
+#import our database of users that were eitehr create in the admin page or through our signup page
+from django.contrib.auth.models import User
 
 # Create your models here.
 # Models in python are a Class which represents a table in a database
@@ -17,7 +19,11 @@ class Tickets(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=50, default="")
     attachment = models.ImageField(default='default.png', blank=True)
-    #sender
+    #associate the User model with our Ticket model
+    #essentially the same as the use of ForeignKey in posgreSQL
+    #saying these two tables share the same field and could be linked together
+    reporter = models.ForeignKey(User,on_delete=models.DO_NOTHING,default=None)
+
 
     def __str__(self):
         return self.title

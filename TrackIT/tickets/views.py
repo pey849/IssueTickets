@@ -36,6 +36,14 @@ def ticket_create_ticket_views(request):
         #check if form is valid
         if myTicketCreationForm.is_valid():
             #save article to database
+            #get the instance of the form that was submitted, but tell it not to save just yet
+            #this returns us an instance, so instance of the ticket that is going to be submitted
+            createTicketInstance = myTicketCreationForm.save(commit=False)
+            #now the request object knows who is logged in. we want to store it into the
+            #reporter field in the createTicketInstance object which has a reporter field
+            createTicketInstance.reporter = request.user
+            #now we can save
+            createTicketInstance.save()
             return redirect('ticket_app:list')
     else:
         #create a new instace of our model form and send it to the browser
