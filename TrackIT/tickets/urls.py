@@ -17,6 +17,9 @@ urlpatterns = [
     #that the path we are going to is part of a slug
     path('create/', views.ticket_create_ticket_views, name="create"),
 
+    #path is ../slug/delete/ which calls the delete function and tyhen redirects back to the list
+    re_path(r'^(?P<slug>[\w-]+)/delete/$', views.ticket_delete_ticket_views, name="delete"),
+
     #define a named capturing group for the first parameter
     #reference: https://stackoverflow.com/questions/7988942/what-does-this-django-regex-mean-p
     #re_path is just path but can also handle regular expressions syntax

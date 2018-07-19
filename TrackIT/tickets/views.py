@@ -49,3 +49,11 @@ def ticket_create_ticket_views(request):
         #create a new instace of our model form and send it to the browser
         myTicketCreationForm = myForms.CreateTicketForm
     return render(request,'tickets/create_ticket.html', {'ticketForm':myTicketCreationForm})
+
+#deleting an ticket from the database based on the slug found in the database
+#potential problem if there is two tickets with the same slug
+#should authenticate whether they are agents or clients
+def ticket_delete_ticket_views(request, slug):
+    instance = Tickets.objects.filter(slug=slug)
+    instance.delete()
+    return redirect('ticket_app:list')
