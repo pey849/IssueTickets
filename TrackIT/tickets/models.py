@@ -19,6 +19,7 @@ class Tickets(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=50, default="")
     attachment = models.ImageField(default='default.png', blank=True)
+    resolved = models.BooleanField(default=False)
     #associate the User model with our Ticket model
     #essentially the same as the use of ForeignKey in posgreSQL
     #saying these two tables share the same field and could be linked together

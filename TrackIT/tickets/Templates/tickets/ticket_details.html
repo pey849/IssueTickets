@@ -12,10 +12,10 @@
     <p>{{single_ticket_details.issueDescription}}</p>
     <p>{{single_ticket_details.date}}</p>
     <!-- 'slug=single_ticket_details.slug' is the variable we will pass in, which has to match the variable name in the function you call in the view and the name capturing group in urls.py -->
-    <form class="site-form" action="{% url 'ticket_app:delete' slug=single_ticket_details.slug %}" method="post" enctype="multipart/form-data">
+    <form class="site-form" action="{% url 'ticket_app:resolve' slug=single_ticket_details.slug %}" method="post" enctype="multipart/form-data">
       <!-- give it a security token -->
       {% csrf_token %}
-      <input type="submit" value="Delete Issue">
+      <input type="submit" value="Resolve Issue">
     </form>
   </div>
 

@@ -50,6 +50,14 @@ def ticket_create_ticket_views(request):
         myTicketCreationForm = myForms.CreateTicketForm
     return render(request,'tickets/create_ticket.html', {'ticketForm':myTicketCreationForm})
 
+#resolve the ticket. Basically we'll hide it from the list
+def ticket_resolved_ticket_views(request, slug):
+    instance = Tickets.objects.get(slug=slug)
+    instance.resolved = True
+    instance.save()
+    print("resolved status: " + str(instance.resolved))
+    return redirect('ticket_app:list')
+
 #deleting an ticket from the database based on the slug found in the database
 #potential problem if there is two tickets with the same slug
 #should authenticate whether they are agents or clients
