@@ -25,6 +25,7 @@
           <!-- we have access to the user object inside our template -->
           <!-- check if the user is authenticated/logged in -->
           {% if user.is_authenticated %}
+            <li><a href="{% url 'ticket_app:myTickets' %}">My Tickets</a></li>
             <li>
               <form class="logout-link" action="{% url 'accounts_app:logout' %}" method="post">
                 <!-- add the csrf token for security -->

@@ -17,6 +17,8 @@ urlpatterns = [
     #that the path we are going to is part of a slug
     path('create/', views.ticket_create_ticket_views, name="create"),
 
+    path('myTickets/', views.ticket_list, name="myAssignedTickets"),
+
     #path is ../slug/resolve/ which calls the resolve function and then redirects back to the list
     re_path(r'^(?P<slug>[\w-]+)/resolve/$', views.ticket_resolved_ticket_views, name="resolve"),
 
