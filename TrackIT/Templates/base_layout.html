@@ -32,6 +32,7 @@
                 <button type="submit">Log Out</button>
               </form>
             </li>
+            <li><a href="{% url 'ticket_app:myTickets' %}">My Ticket</a></li>
             <li><a href="{% url 'ticket_app:create' %}" class="highlight">Create Ticket</a></li>
           {% else %}
             <li><a href="{% url 'accounts_app:login' %}">Login</a></li>
