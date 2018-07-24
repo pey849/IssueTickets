@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'tickets',
     #register the accouts app folder
     'accounts',
+    #register the roles app folder
+    'roles',
 ]
 
 MIDDLEWARE = [
