@@ -1,0 +1,24 @@
+{% extends 'base_layout.html' %}
+
+{% block uniqueContent %}
+
+<div class="ticket-detail">
+  <div class="ticket">
+    <!-- now we have access to the single ticket that was found in views.py in the tickets folder -->
+    <!-- since we passed it through the render function -->
+    <!-- we called this object single_ticket_details -->
+    <h2>{{single_ticket_details.title}}</h2>
+    <img src="{{single_ticket_details.attachment.url}}" alt="">
+    <p>{{single_ticket_details.issueDescription}}</p>
+    <p>{{single_ticket_details.date}}</p>
+    <!-- 'slug=single_ticket_details.slug' is the variable we will pass in, which has to match the variable name in the function you call in the view and the name capturing group in urls.py -->
+    <form class="site-form" action="{% url 'ticket_app:resolve' slug=single_ticket_details.slug %}" method="post" enctype="multipart/form-data">
+      <!-- give it a security token -->
+      {% csrf_token %}
+      <input type="submit" value="Resolve Issue">
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

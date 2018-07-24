@@ -1,0 +1,54 @@
+<!-- base template that is going to be on every single page -->
+
+<!-- impiorts the base link to the folder which has all our static files (assests folder) -->
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tickets</title>
+    <!-- allows to only input the file since we all ready have the base link -->
+    <!-- static is keyword, cannot remove -->
+    <!-- this is part of django -->
+    <!-- base link is pointing to our 'assets' folder and loading style.css -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+
+    <header class="wrapper">
+      <!-- the 'home' url is a name derived from urls.py in the TrackIT folder -->
+      <h1><a href="{% url 'home' %}">TrackIT</a></h1>
+      <!-- create logout button in the navigation -->
+      <nav>
+        <ul>
+          <!-- we have access to the user object inside our template -->
+          <!-- check if the user is authenticated/logged in -->
+          {% if user.is_authenticated %}
+            <li>
+              <form class="logout-link" action="{% url 'accounts_app:logout' %}" method="post">
+                <!-- add the csrf token for security -->
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+              </form>
+            </li>
+            <li><a href="{% url 'ticket_app:create' %}" class="highlight">Create Ticket</a></li>
+          {% else %}
+            <li><a href="{% url 'accounts_app:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts_app:signup' %}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+      <!--the unique stuff from each page goes in here-->
+      <!-- create a 'block' and look for a block with the name 'uniqueContent' -->
+      <!-- so if we see an html page (Template) with a block called 'uniqueContent' it take it and insert it into a copy of our base layout -->
+      <div class="wrapper">
+        {% block uniqueContent %}
+        {% endblock %}
+      </div>
+
+
+
+  </body>
+</html>

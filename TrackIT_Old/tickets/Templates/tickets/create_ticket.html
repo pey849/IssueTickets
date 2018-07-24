@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block uniqueContent %}
+<div class="create-ticket">
+  <h2>Create a new issue ticket!</h2>
+  <!-- "enctype="multipart/form-data" is needed if you are uploading media or else it won't work -->
+  <!-- its just an encryption type -->
+  <form class="site-form" action="{% url 'ticket_app:create' %}" method="post" enctype="multipart/form-data">
+    <!-- give it a security token -->
+    {% csrf_token %}
+    <!-- the dictionary variable we have in views.py in the function ticket_create_ticket_views -->
+    {{ ticketForm }}
+    <input type="submit" value="Submit Issue">
+  </form>
+</div>
+<!-- remember in the settings.py file we definded the STATIC_URL to be /helperfiles/ -->
+<!-- so we need that path to access the assets folder -->
+<script src="/helperfiles/slugify.js"></script>
+{% endblock %}

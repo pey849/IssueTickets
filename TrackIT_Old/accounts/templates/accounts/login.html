@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+
+{% block uniqueContent %}
+  <h1>Log in</h1>
+  <!-- "\{% url 'accounts:login' %\}" is the same as "/accounts/signup/" -->
+  <!-- we are just asking for the app_name called accounts and the url that named login -->
+  <form class="site-form" action="{% url 'accounts_app:login' %}" method="post">
+    <!-- we also need to send a token to tell the server that data we are sending
+    is coming from our application and please accept our data. the data isn't coming
+    from anywhere else -->
+    {% csrf_token %}
+    <!-- output all of django's prebuilt form outlay -->
+    <!-- loginForm matches the same variable you gave to the directory in views.py for accounts -->
+    {{loginForm}}
+    <!-- when the page renders and is not a POST method, we have access -->
+    <!-- to the 'request' object from return render(request, 'accounts/login.html', {'loginForm':myAuthForm}) -->
+    <!-- which we can check what the 'next' property has or if it exists -->
+    <!-- this is to help with if we came from a certain page that requires login -->
+    <!-- that after logging in, we get redirected back to the page we came from before log in -->
+    <!-- the next property guesses where we initially came from/need to go to next, http://localhost:8000/accounts/login/?next=/tickets/create/ -->
+    <!-- '?next=/tickets/create/' is saying its guessing we would like to go to the create page next after logging in -->
+    <!-- since we went to the create page but needed to log in first before we go back to the create page -->
+    {% if request.GET.next %}
+      <!-- hide the input and use the "{{gfgd}}" for dynamic output so whatever the value of next is from the request object-->
+      <!-- and if the 'next' value exists, it will come with the POST request when we do a POST request when logging in -->
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <input type="submit" value="login">
+  </form>
+{% endblock %}
